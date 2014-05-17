@@ -75,12 +75,30 @@ public class GOEditor : Editor
 
         GUILayout.Space(_spaceHeight);
 
-        #region Горизонтальный блок
+        #region Горизонтальный блок - чекбоксы управления расширенным редактором
         EditorGUILayout.BeginHorizontal();
+        //Показать расширенный редактор
         GUILayout.Label("Enable additional editor");
         _enableAdditional = EditorGUILayout.Toggle(_enableAdditional);
+        //Скрыть инструменты сцены (заодно будем закрывать от редактирования и окно Transform Editor)
         GUILayout.Label("Disable _transform tools");
         _disableTransformTools = GUILayout.Toggle(_disableTransformTools, "");
+        if (_disableTransformTools)
+        {
+            //В принципе у нас два варианта:
+            //1. Запретить редактирвание
+            //2. Скрыть окно компонента в инспекторе.
+
+            _targetGameObject.GetComponent<Transform>().hideFlags = HideFlags.NotEditable;
+            
+            //_targetGameObject.GetComponent<Transform>().hideFlags = HideFlags.HideInInspector;
+        }
+        else _targetGameObject.GetComponent<Transform>().hideFlags = HideFlags.None;
+        
+
+
+
+
         EditorGUILayout.EndHorizontal();
         #endregion
 
