@@ -13,4 +13,4 @@ MapEditor
 
 Почти полноценный генератор уровней лабиринтов для игр типа Pac-Man
 
-![Editor](https://github.com/devpilgrin/EditorGui/blob/master/Git_res/screenshot%202014-05-17%20001.png)
+![Editor](https://github.com/devpilgrin/EditorGui/blob/master/Git_res/screenshot%202014-05-17%20001.png?raw=true)
