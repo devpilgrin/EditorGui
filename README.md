@@ -8,6 +8,8 @@ GOEditor
 Класс переопределяющий стандартный редактор инспектора для всех GameObject. Данный редактор будет отображаться для всех GameObject как в сцене, так и в
 деревее иерархии сцены, а также в обозревателе проекта.
 
+![Editor](https://github.com/devpilgrin/EditorGui/blob/master/Git_res/screenshot%202014-05-17%20002.png?raw=true)
+
 MapEditor
 ---------
 
