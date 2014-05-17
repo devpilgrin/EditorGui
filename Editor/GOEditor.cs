@@ -12,31 +12,31 @@ public class GOEditor : Editor
     /// Целевой GameObject (в дальнейшем я не буду использовать XML коментарии, так как класс не предназначен
     /// для использования в других классах, а теги непомерно раздувают коментарии.)
     /// </summary>
-    private GameObject targetGameObject;
+    private GameObject _targetGameObject;
 
     //Отображение расширенного редактора 
-    public static bool enableAdditional;
+    private static bool _enableAdditional;
 
     //Transform нашего целевого GameObject
-    private Transform transform;
+    private Transform _transform;
 
     //Переменная хранит состояние отображения Handles
     //Примечания:
     //Объявлена как static для того, чтобы при переходе между
     //объектами сцены состояние сохранялось для всех объектов.
-    private static bool showHandles;
+    private static bool _showHandles;
 
  
     //Отображение инструментов сцены (перемещение, масштабирование, вращение)
-    Tool LastTool = Tool.None;
+    Tool _lastTool = Tool.None;
     private static bool _disableTransformTools;
 
     //Параметры оформления
-    const int SpaceHeight = 2;
-    const int SpaceWidth = 5;
+    const int _spaceHeight = 2;
+    const int _spaceWidth = 5;
     
     //анимация
-    private Vector3 transformRotor;
+    private Vector3 _transformRotor;
 
 
     // Реализация данной процедуры позволяет переопределить стандартный вывод
@@ -47,7 +47,7 @@ public class GOEditor : Editor
         //Так улучшается общая читаемость кода.
         //В качестве дополнительных  разделителей кода можно использовать регионы --> Продолжение далее по коду
         
-        GUILayout.Space(SpaceHeight); //разделитель
+        GUILayout.Space(_spaceHeight); //разделитель
         
         #region Вертикальный блок - здесь востанавливаем вид стандартного инспектора
         EditorGUILayout.BeginVertical("SelectionRect");
@@ -56,30 +56,30 @@ public class GOEditor : Editor
         #region Горизонтальный блок
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Name:", GUILayout.Width(50));
-        targetGameObject.name = EditorGUILayout.TextField(targetGameObject.name);
+        _targetGameObject.name = EditorGUILayout.TextField(_targetGameObject.name);
         GUILayout.Label("Static:", GUILayout.Width(50));
-        targetGameObject.isStatic = EditorGUILayout.Toggle(targetGameObject.isStatic, GUILayout.Width(18));
+        _targetGameObject.isStatic = EditorGUILayout.Toggle(_targetGameObject.isStatic, GUILayout.Width(18));
         EditorGUILayout.EndHorizontal();
         #endregion
 
-        GUILayout.Space(SpaceHeight);
+        GUILayout.Space(_spaceHeight);
 
         #region Горизонтальный блок
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Layer:", GUILayout.Width(50));
-        targetGameObject.layer = EditorGUILayout.LayerField(targetGameObject.layer);
+        _targetGameObject.layer = EditorGUILayout.LayerField(_targetGameObject.layer);
         GUILayout.Label("Tag:", GUILayout.Width(50));
-        targetGameObject.tag = EditorGUILayout.TagField(targetGameObject.tag);
+        _targetGameObject.tag = EditorGUILayout.TagField(_targetGameObject.tag);
         EditorGUILayout.EndHorizontal();
         #endregion
 
-        GUILayout.Space(SpaceHeight);
+        GUILayout.Space(_spaceHeight);
 
         #region Горизонтальный блок
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Enable additional editor");
-        enableAdditional = EditorGUILayout.Toggle(enableAdditional);
-        GUILayout.Label("Disable transform tools");
+        _enableAdditional = EditorGUILayout.Toggle(_enableAdditional);
+        GUILayout.Label("Disable _transform tools");
         _disableTransformTools = GUILayout.Toggle(_disableTransformTools, "");
         EditorGUILayout.EndHorizontal();
         #endregion
@@ -87,10 +87,10 @@ public class GOEditor : Editor
         EditorGUILayout.EndVertical();
         #endregion
 
-        GUILayout.Space(SpaceHeight); //разделитель
+        GUILayout.Space(_spaceHeight); //разделитель
 
         //Если включен режим отображения расширенного редактора
-        if (!enableAdditional) return;
+        if (!_enableAdditional) return;
 
         #region Вертикальный блок - реализуем расширенный редактор
 
@@ -100,22 +100,22 @@ public class GOEditor : Editor
         #region Горизонтальный блок - блок кнопок управления трансформациями
 
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Reset angle", "minibutton")) transform.rotation = Quaternion.identity;
+        if (GUILayout.Button("Reset angle", "minibutton")) _transform.rotation = Quaternion.identity;
         if (GUILayout.Button("Step Rotate", "minibutton"))
         {
-            transform.Rotate(new Vector3(10, 10, 10));
+            _transform.Rotate(new Vector3(10, 10, 10));
         }
-        if (GUILayout.Button("Reset local position", "minibutton")) transform.localPosition = Vector3.zero;
+        if (GUILayout.Button("Reset local position", "minibutton")) _transform.localPosition = Vector3.zero;
         EditorGUILayout.EndHorizontal();
 
         #endregion
 
-        showHandles = EditorGUILayout.Toggle("Show Handles", showHandles);
+        _showHandles = EditorGUILayout.Toggle("Show Handles", _showHandles);
 
         #region Горизонтальный блок - заголовок таблицы вершин выделенного объекта  
 
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Space(SpaceWidth);
+        GUILayout.Space(_spaceWidth);
 
         EditorGUILayout.LabelField("", "Mesh", "PR Insertion");
         EditorGUILayout.EndHorizontal();
@@ -125,9 +125,9 @@ public class GOEditor : Editor
         #region Вертикальный блок - таблица вершин выделенного объекта
 
         EditorGUILayout.BeginVertical("SelectionRect");
-        if (targetGameObject.GetComponent<MeshFilter>())
+        if (_targetGameObject.GetComponent<MeshFilter>())
         {
-            var _meshFilter = targetGameObject.GetComponent<MeshFilter>();
+            var _meshFilter = _targetGameObject.GetComponent<MeshFilter>();
             var _meshFilter_Vertices = _meshFilter.sharedMesh.vertices;
             foreach (var vertices in _meshFilter_Vertices)
                 EditorGUILayout.Vector3Field("", vertices);
@@ -144,7 +144,7 @@ public class GOEditor : Editor
         // <-- Продолжение: Так мы добиваемся отображение структуры блоков в виде дерева
         // Достаточно легко читаемо + наглядные коментарии 
 
-        GUILayout.Space(SpaceHeight); //разделитель
+        GUILayout.Space(_spaceHeight); //разделитель
 
     }
 
@@ -152,14 +152,14 @@ public class GOEditor : Editor
 	void OnEnable ()
 	{
         //Получаем целевой объект для редактирования и записываем его как GameObject
-	    targetGameObject = target as GameObject;
-        //Получаем transform объекта.
+	    _targetGameObject = target as GameObject;
+        //Получаем _transform объекта.
         //По идее проверка на null для GameObject в данном месте не нужна, но 
         //Редактор Unity считает иначе, поэтому оставляем
-	    if (targetGameObject != null) transform = targetGameObject.transform;
+	    if (_targetGameObject != null) _transform = _targetGameObject.transform;
 
         //Записываем текущий инструмент
-        LastTool = Tools.current;
+        _lastTool = Tools.current;
         if (_disableTransformTools) Tools.current = Tool.None;
 
 	}
@@ -175,7 +175,7 @@ public class GOEditor : Editor
     {
         //Возвращаем предыдущий (до скрытия) инструмент трансформации, дабы
         //не потерять его при смене объекта или потери фокуса окном инспектора
-        Tools.current = LastTool;
+        Tools.current = _lastTool;
     }
 
     //Отрисовка сцены
@@ -199,34 +199,34 @@ public class GOEditor : Editor
 
 
         //Примечание:
-        //showHandles - только сам функционал отрисовки Handles + масштабирование и перемещение
+        //_showHandles - только сам функционал отрисовки Handles + масштабирование и перемещение
         //На самом деле здесь нужно еще оценивать размер самого Mesh, дабы регулировать длинну линий и размер точек при их отрисовке.
         //Но в данной демонстрации я стараюсь показать как можно больше методик работы с редактором и сценой, а не конкретные алгоритмы
         //работы с Mesh.
 
         //Если включили отображение собственных Handles
-        if (!showHandles) return;
+        if (!_showHandles) return;
         
         //Если на текущем объекте висит компонент камера, тогда организуем отрисовку  положения линзы.
         //Примечание:
         //Динза виртуальная, ничего не делает, просто берет настройки о собственном размере и положении из 
         //настроек масштабирования по осям X и Z
-        if (targetGameObject.GetComponent<Camera>())
+        if (_targetGameObject.GetComponent<Camera>())
         {
             Handles.color = Color.blue;
-            Handles.DrawLine(transform.position, transform.position + Vector3.forward);
-            Handles.CircleCap(1, transform.position + Vector3.forward*transform.localScale.z, transform.localRotation,
-                transform.localScale.x);
-            Handles.Label(transform.position + Vector3.up/4f, targetGameObject.name);
+            Handles.DrawLine(_transform.position, _transform.position + Vector3.forward);
+            Handles.CircleCap(1, _transform.position + Vector3.forward*_transform.localScale.z, _transform.localRotation,
+                _transform.localScale.x);
+            Handles.Label(_transform.position + Vector3.up/4f, _targetGameObject.name);
         }
 
 
         //Если выбранный объект содержит компонент MeshFilter, тогда визуализируем
         //вершины и нормали
-        if (targetGameObject.GetComponent<MeshFilter>())
+        if (_targetGameObject.GetComponent<MeshFilter>())
         {
 
-            var _meshFilter = targetGameObject.GetComponent<MeshFilter>();
+            var _meshFilter = _targetGameObject.GetComponent<MeshFilter>();
             //Примечание:
             //Здесь используем sharedMesh во избежание исключений редактора Unity
             var _meshFilter_Normals = _meshFilter.sharedMesh.normals;
@@ -237,16 +237,16 @@ public class GOEditor : Editor
             {
                 var vertices = _meshFilter_Vertices[i];
                 Handles.color = Color.green;
-                vertices.Scale(transform.lossyScale);
-                Handles.SphereCap(i, vertices + (transform.position) , transform.rotation, 0.1f * (transform.lossyScale.magnitude/4));
+                vertices.Scale(_transform.lossyScale);
+                Handles.SphereCap(i, vertices + (_transform.position) , _transform.rotation, 0.1f * (_transform.lossyScale.magnitude/4));
             }
 
             //Рисуем нормали
             foreach (var normal in _meshFilter_Normals)
             {
                 Handles.color = Color.cyan;
-                normal.Scale(transform.lossyScale);
-                Handles.DrawLine(transform.position + normal, transform.localPosition);
+                normal.Scale(_transform.lossyScale);
+                Handles.DrawLine(_transform.position + normal, _transform.localPosition);
             }
         }
 
