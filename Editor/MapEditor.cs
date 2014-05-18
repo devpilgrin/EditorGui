@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,12 +15,11 @@ namespace Utilites
         private float myFloat;
 
         #region Fields
-
         /// <summary>
         /// Коллекция объктов для размещения на карте
         /// </summary>
         public List<PixelToObject> _PixelToObjectsList;
-
+        
         /// <summary>
         /// Файл изображения по которому генерируется уровень
         /// </summary>
@@ -49,8 +48,8 @@ namespace Utilites
         [MenuItem("Tools/Генератор карт")]
         private static void Window()
         {
-            var win = GetWindow(typeof (MapEditor));
-            win.minSize = new Vector2(300, 400);
+           var win = GetWindow(typeof (MapEditor));
+            win.minSize = new Vector2(300,400);
         }
 
         /// <summary>
@@ -64,9 +63,7 @@ namespace Utilites
             GUI.color = Color.white;
             _ImageMapWidthAndHeight = EditorGUIUtility.labelWidth;
             EditorGUILayout.BeginHorizontal();
-            _ImageMap =
-                EditorGUILayout.ObjectField(_ImageMap, typeof (Texture2D), false,
-                    GUILayout.Width(_ImageMapWidthAndHeight),
+            _ImageMap = EditorGUILayout.ObjectField(_ImageMap, typeof (Texture2D), false, GUILayout.Width(_ImageMapWidthAndHeight),
                     GUILayout.Height(_ImageMapWidthAndHeight)) as Texture2D;
             EditorGUILayout.BeginVertical("button");
             if (GUILayout.Button("Автонастройка\nизображения")) SetTextureParametrs(_ImageMap);
@@ -117,18 +114,15 @@ namespace Utilites
                     var pixelToObject = _PixelToObjectsList[index];
                     EditorGUILayout.LabelField(index + " Пол?", GUILayout.Width(45));
                     pixelToObject.Floor = EditorGUILayout.Toggle(pixelToObject.Floor, GUILayout.Width(15));
-                    pixelToObject.PixelObject =
-                        (GameObject) EditorGUILayout.ObjectField(pixelToObject.PixelObject, typeof (GameObject), true);
+                    pixelToObject.PixelObject = (GameObject) EditorGUILayout.ObjectField(pixelToObject.PixelObject, typeof (GameObject),true);
                     pixelToObject.PixelColor = EditorGUILayout.ColorField(pixelToObject.PixelColor, GUILayout.Width(50));
-                    if (GUILayout.Button("х", EditorStyles.miniButton, GUILayout.Width(22), GUILayout.Height(17)))
-                        _PixelToObjectsList.RemoveAt(index);
+                    if (GUILayout.Button("х", EditorStyles.miniButton, GUILayout.Width(22), GUILayout.Height(17)))_PixelToObjectsList.RemoveAt(index);
                     EditorGUILayout.EndHorizontal();
                 }
             }
             GUILayout.Space(5);
-            _GameObjectfloor =
-                (GameObject) EditorGUILayout.ObjectField("Объект пола", _GameObjectfloor, typeof (GameObject), true);
-            if (GUILayout.Button("Генерировать уровень")) GenerateLevel();
+            _GameObjectfloor = (GameObject) EditorGUILayout.ObjectField("Объект пола", _GameObjectfloor, typeof (GameObject), true);
+            if (GUILayout.Button("Генерировать уровень"))GenerateLevel();
             EditorGUILayout.EndVertical();
         }
 
@@ -145,10 +139,8 @@ namespace Utilites
                     var index = _PixelToObjectsList.FindIndex(FindPTO);
                     if (index != -1)
                     {
-                        Instantiate(_PixelToObjectsList[index].PixelObject, new Vector3(x*Tile.x, 0, y*Tile.y),
-                            new Quaternion());
-                        if (_PixelToObjectsList[index].Floor)
-                            Instantiate(_GameObjectfloor, new Vector3(x*Tile.x, 0, y*Tile.y), new Quaternion());
+                        Instantiate(_PixelToObjectsList[index].PixelObject, new Vector3(x*Tile.x, 0, y*Tile.y), new Quaternion());
+                        if (_PixelToObjectsList[index].Floor) Instantiate(_GameObjectfloor, new Vector3(x*Tile.x, 0, y*Tile.y), new Quaternion());
                     }
 
                 }
@@ -166,7 +158,7 @@ namespace Utilites
         {
             Repaint();
         }
-
+        
         private void Start()
         {
             Tile = new Vector2(2, 2);
@@ -206,12 +198,10 @@ namespace Utilites
         /// Цвет соответствующий данному экземпляру преобразования
         /// </summary>
         public Color PixelColor;
-
         /// <summary>
         /// Объект размещаемый в соответствии с цветом преобразования
         /// </summary>
         public GameObject PixelObject;
-
         /// <summary>
         /// Размещать ли в данной ячейке объект пола
         /// </summary>
@@ -227,5 +217,6 @@ namespace Utilites
         }
 
     }
-}
 
+
+}
