@@ -625,9 +625,9 @@ namespace Alter
             internal_DrawWithTextSelectionArguments.cursorColor = cursorColor;
             internal_DrawWithTextSelectionArguments.selectionColor = GUI.skin.settings.selectionColor;
             internal_DrawWithTextSelectionArguments.isHover = ((!position.Contains(current.mousePosition)) ? 0 : 1);
-            internal_DrawWithTextSelectionArguments.isActive = ((controlID != GUIUtility.hotControl) ? 0 : 1);
+            internal_DrawWithTextSelectionArguments.isActive = ((controlID != AlterGUIUtility.hotControl) ? 0 : 1);
             internal_DrawWithTextSelectionArguments.on = 0;
-            internal_DrawWithTextSelectionArguments.hasKeyboardFocus = ((controlID != GUIUtility.keyboardControl || !showKeyboardFocus) ? 0 : 1);
+            internal_DrawWithTextSelectionArguments.hasKeyboardFocus = ((controlID != AlterGUIUtility.keyboardControl || !showKeyboardFocus) ? 0 : 1);
             internal_DrawWithTextSelectionArguments.drawSelectionAsComposition = ((!drawSelectionAsComposition) ? 0 : 1);
             Internal_DrawWithTextSelection(content, ref internal_DrawWithTextSelectionArguments);
         }
