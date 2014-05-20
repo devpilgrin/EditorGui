@@ -16,10 +16,8 @@ namespace Alter
     {
         private Rect s_ToolTipRect;
 
+        
     }
 }
-
-
-
 
 
