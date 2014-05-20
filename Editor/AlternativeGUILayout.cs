@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -213,6 +214,37 @@ public class AlternativeGUILayout
     #endregion
 
 
+    //Визуальный контрол InspectorTitlebar с возможностью установки собственных настроек и заданием области действия
+    //как у BeginVertical / EndVertical
+
+    public static bool CustomTitlebar(string str, bool show, Type type, Color color, GUIStyle style, GUILayoutOption options)
+    {
+        var Texture = Resources.Load<Texture>("icons/help_icon");
+
+        EditorGUILayout.BeginHorizontal("flow navbar back");
+        var ControlRect = EditorGUILayout.GetControlRect();
+        if (show) if (GUI.Button(new Rect(1, ControlRect.y, 20, 20), "", "Foldout")) show = false;
+        if (!show) if (GUI.Button(new Rect(1, ControlRect.y, 20, 20), "", "Foldout")) show = true;
+
+        GUI.Label(new Rect(ControlRect.x+11, ControlRect.y, 20, 20),EditorGUIUtility.ObjectContent(null, type).image);
+
+        GUI.color = color;
+        GUI.Label(new Rect(ControlRect.x + 44, ControlRect.y, ControlRect.width - 50, 20), str, "BoldLabel");
+        GUI.color = Color.white;
+
+        if (GUILayout.Button(new GUIContent(Texture),"label", GUILayout.Width(20), GUILayout.Height(20)))
+        {
+            Application.OpenURL("http://unity3d.com/search?gq=" + str);
+        }
+
+        EditorGUILayout.EndHorizontal();
+        
+        return show;
+    }
+
+
+
+    #region CameraEditor
 
     public static bool CameraEditor(Camera camera)
     {
@@ -225,27 +257,56 @@ public class AlternativeGUILayout
         if (camera.clearFlags == CameraClearFlags.Color)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Background Color");            
+            EditorGUILayout.LabelField("Background Color");
             camera.backgroundColor = EditorGUILayout.ColorField(camera.backgroundColor);
             EditorGUILayout.EndHorizontal();
         }
         if (camera.clearFlags == CameraClearFlags.Skybox)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Background Color");            
+            EditorGUILayout.LabelField("Background Color");
             camera.backgroundColor = EditorGUILayout.ColorField(camera.backgroundColor);
             EditorGUILayout.EndHorizontal();
         }
-        RenderTexture renderTexture = new RenderTexture(100,100,100,RenderTextureFormat.Default, RenderTextureReadWrite.Default);
+        RenderTexture renderTexture = new RenderTexture(100, 100, 100, RenderTextureFormat.Default,
+            RenderTextureReadWrite.Default);
 
         camera.targetTexture = renderTexture;
 
         return true;
     }
 
+    #endregion
 
+    
 
+    /// <summary>
+    /// Контрол открытия файла
+    /// </summary>
+    /// <param name="label">Строка описания поля</param>
+    /// <param name="buttonLabel">Строка описания кнопки</param>
+    /// <param name="labelMaxWidth">Максимальная длинна label</param>
+    /// <param name="path">Строка для открытия директории по умолчанию</param>
+    /// <param name="extension">Возврашает строку к файлу</param>
+    /// <returns></returns>
+    public static string FileField(string label, string buttonLabel, float labelMaxWidth, string path, string extension)
+    {
+        //Нужно было оценить как смотрятся в контроле иконки разного разрешения...
+        //для расчета длинны label = 7f
 
+        EditorGUILayout.BeginHorizontal();
 
+        GUILayout.Label(label, GUILayout.MaxWidth(labelMaxWidth));
+
+        var fileLabel = EditorGUILayout.TextField(path);
+
+        if (GUILayout.Button(buttonLabel, "minibuttonright"))
+        {
+            fileLabel = EditorUtility.OpenFilePanel(label, path, extension);
+        }
+
+        EditorGUILayout.EndHorizontal();
+        return fileLabel;
+    }
 
 }

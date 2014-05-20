@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEditor;
 //Название не в честь Альтернатива Платформ, а
 //просто как Альтернативный инспектор объектов.
 using UnityEngine.Internal;
+using Object = UnityEngine.Object;
 
 public class AlternativeInspector : EditorWindow
 {
@@ -38,6 +40,9 @@ public class AlternativeInspector : EditorWindow
     private const float _LABEL_WIDTH = 80;
     
     private Editor m_LastInteractedEditor;
+    
+    // Переменные буфера обмена
+    private static string _Util_Bufer_NewName;
 
     #endregion
 
@@ -111,16 +116,37 @@ public class AlternativeInspector : EditorWindow
                 if (component is Transform)
                 {
                     _foldTitlebar = AlternativeGUILayout.TransformEditor(_foldTitlebar, _GameObject.transform, _rotationComponents, GUILayout.Width(_LABEL_WIDTH));
-                    
-                    _foldTitlebarUtil = EditorGUILayout.InspectorTitlebar(_foldTitlebarUtil, _GameObject.transform);
+                    _foldTitlebarUtil = AlternativeGUILayout.CustomTitlebar("Utilities", _foldTitlebarUtil, typeof(GameObject), Color.cyan, "button", GUILayout.MaxWidth(100));
                     if (_foldTitlebarUtil)
                     {
-                        //Утилиты для Transform
+                        EditorGUILayout.BeginVertical("HelpBox");
+                        if (GUILayout.Button("Duplicate object", "minibutton"))
+                        {
+                            Instantiate(_GameObject);
+                        }
+
+                        EditorGUILayout.BeginHorizontal();
+                        GUILayout.Label("Object Name");
+
+                        _Util_Bufer_NewName = EditorGUILayout.TextField(_Util_Bufer_NewName);
+
+                        if (GUILayout.Button("Duplicate object", "minibuttonright"))
+                        {
+                            var oldName = _GameObject.name;
+                            _GameObject.name = _Util_Bufer_NewName;
+                            Instantiate(_GameObject);
+                            _GameObject.name = oldName;
+                        }
+
+                        EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.EndVertical();
                     }
+                    
                 }
                 else if (component is Camera)
                 {
-                    EditorGUILayout.InspectorTitlebar(true, component);
+
+                    AlternativeGUILayout.CustomTitlebar("Camera", true, typeof(Camera), Color.cyan, "button", GUILayout.MaxWidth(100));
                     AlternativeGUILayout.CameraEditor(component as Camera);
                 }
                 else EditorGUILayout.InspectorTitlebar(true, component);
@@ -130,11 +156,9 @@ public class AlternativeInspector : EditorWindow
 
             }
         }
-
-
-
     }
 
+    
     #region События выбора объекта
 
     // Called whenever the selection has changed.
