@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class AlternativeGUILayout
 {
-    #region Методы конвертации
+    #region РњРµС‚РѕРґС‹ РєРѕРЅРІРµСЂС‚Р°С†РёРё
 
     /// <summary>
-    /// Конвертация Vector4 в Quaternion
+    /// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Vector4 РІ Quaternion
     /// </summary>
     /// <param name="v4">Vector4</param>
     /// <returns>Quaternion</returns>
@@ -20,7 +20,7 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    /// Конвертация Quaternion в Vector4
+    /// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ Quaternion РІ Vector4
     /// </summary>
     /// <param name="q">Quaternion</param>
     /// <returns>Vector4</returns>
@@ -31,15 +31,15 @@ public class AlternativeGUILayout
 
     #endregion
 
-    #region Vector4Field - Визуальный контрол для редактирования переменных типа: Vector4
+    #region Vector4Field - Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector4
 
     /// <summary>
-    ///  Визуальный контрол для редактирования переменных типа: Vector4 
+    ///  Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector4 
     /// </summary>
-    /// <param name="label">Строка описания поля</param>
-    /// <param name="quaterion">Quaterion для правильного вращения</param>
-    /// <param name="options">Параметры GUILayout для дополнительной настройки полей</param>
-    /// <returns>Переменная типа Vector4</returns>
+    /// <param name="label">РЎС‚СЂРѕРєР° РѕРїРёСЃР°РЅРёСЏ РїРѕР»СЏ</param>
+    /// <param name="quaterion">Quaterion РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РІСЂР°С‰РµРЅРёСЏ</param>
+    /// <param name="options">РџР°СЂР°РјРµС‚СЂС‹ GUILayout РґР»СЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РїРѕР»РµР№</param>
+    /// <returns>РџРµСЂРµРјРµРЅРЅР°СЏ С‚РёРїР° Vector4</returns>
     /// <example>
     /// <code>
     /// rotation = Vector4Field("Rotation:", QuaternionToVector4(transform.localRotation), options);
@@ -55,11 +55,11 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    ///  Визуальный контрол для редактирования переменных типа: Vector4 
+    ///  Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector4 
     /// </summary>
-    /// <param name="label">Строка описания поля</param>
-    /// <param name="quaterion">Quaterion для правильного вращения</param>
-    /// <returns>Переменная типа Vector4</returns>
+    /// <param name="label">РЎС‚СЂРѕРєР° РѕРїРёСЃР°РЅРёСЏ РїРѕР»СЏ</param>
+    /// <param name="quaterion">Quaterion РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РІСЂР°С‰РµРЅРёСЏ</param>
+    /// <returns>РџРµСЂРµРјРµРЅРЅР°СЏ С‚РёРїР° Vector4</returns>
     /// <example>
     /// <code>
     /// rotation = Vector4Field("Rotation:", QuaternionToVector4(transform.localRotation), options);
@@ -75,10 +75,10 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    ///  Визуальный контрол для редактирования переменных типа: Vector4 
+    ///  Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector4 
     /// </summary>
-    /// <param name="quaterion">Quaterion для правильного вращения</param>
-    /// <returns>Переменная типа Vector4</returns>
+    /// <param name="quaterion">Quaterion РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РІСЂР°С‰РµРЅРёСЏ</param>
+    /// <returns>РџРµСЂРµРјРµРЅРЅР°СЏ С‚РёРїР° Vector4</returns>
     /// <example>
     /// <code>
     /// rotation = Vector4Field("Rotation:", QuaternionToVector4(transform.localRotation), options);
@@ -101,14 +101,14 @@ public class AlternativeGUILayout
 
     #endregion
 
-    #region Vector3Field - Визуальный контрол для редактирования переменных типа: Vector3
+    #region Vector3Field - Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector3
 
     /// <summary>
-    /// Визуальный контрол для редактирования переменных типа: Vector3
+    /// Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector3
     /// </summary>
-    /// <param name="label">Описания поля: тип string</param>
-    /// <param name="vector">Значение для заполнения полей: тип Vector3</param>
-    /// <param name="options">Параметры GUILayout для дополнительной настройки полей</param>
+    /// <param name="label">РћРїРёСЃР°РЅРёСЏ РїРѕР»СЏ: С‚РёРї string</param>
+    /// <param name="vector">Р—РЅР°С‡РµРЅРёРµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРѕР»РµР№: С‚РёРї Vector3</param>
+    /// <param name="options">РџР°СЂР°РјРµС‚СЂС‹ GUILayout РґР»СЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РїРѕР»РµР№</param>
     /// <returns></returns>
     public static Vector3 Vector3Field(string label, Vector3 vector, GUILayoutOption options)
     {
@@ -120,10 +120,10 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    /// Визуальный контрол для редактирования переменных типа: Vector3
+    /// Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector3
     /// </summary>
-    /// <param name="label">Описания поля: тип string</param>
-    /// <param name="vector">Значение для заполнения полей: тип Vector3</param>
+    /// <param name="label">РћРїРёСЃР°РЅРёСЏ РїРѕР»СЏ: С‚РёРї string</param>
+    /// <param name="vector">Р—РЅР°С‡РµРЅРёРµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРѕР»РµР№: С‚РёРї Vector3</param>
     /// <returns></returns>
     public static Vector3 Vector3Field(string label, Vector3 vector)
     {
@@ -135,9 +135,9 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    /// Визуальный контрол для редактирования переменных типа: Vector3
+    /// Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С… С‚РёРїР°: Vector3
     /// </summary>
-    /// <param name="vector">Значение для заполнения полей: тип Vector3</param>
+    /// <param name="vector">Р—РЅР°С‡РµРЅРёРµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРѕР»РµР№: С‚РёРї Vector3</param>
     /// <returns></returns>
     public static Vector3 Vector3Field(Vector3 vector)
     {
@@ -154,16 +154,16 @@ public class AlternativeGUILayout
 
     #endregion
 
-    #region Редактор стандартного поля Transform editor со встроенным конвертером преобразования Vector4 в Quaternion
+    #region Р РµРґР°РєС‚РѕСЂ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕР»СЏ Transform editor СЃРѕ РІСЃС‚СЂРѕРµРЅРЅС‹Рј РєРѕРЅРІРµСЂС‚РµСЂРѕРј РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ Vector4 РІ Quaternion
 
     /// <summary>
-    /// Редактор стандартного поля Transform editor со встроенным
-    /// конвертером преобразования Vector4 в Quaternion
+    /// Р РµРґР°РєС‚РѕСЂ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕР»СЏ Transform editor СЃРѕ РІСЃС‚СЂРѕРµРЅРЅС‹Рј
+    /// РєРѕРЅРІРµСЂС‚РµСЂРѕРј РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ Vector4 РІ Quaternion
     /// </summary>
-    /// <param name="foldTitlebar">Переменная передающая состояние в InspectorTitlebar (свернуто/развернуто)</param>
-    /// <param name="transform">Редактируемый Transform</param>
-    /// <param name="rotation">Значения для поля Rotation</param>
-    /// <returns>Переменная принимающая состояние InspectorTitlebar (свернуто/развернуто)</returns>
+    /// <param name="foldTitlebar">РџРµСЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРґР°СЋС‰Р°СЏ СЃРѕСЃС‚РѕСЏРЅРёРµ РІ InspectorTitlebar (СЃРІРµСЂРЅСѓС‚Рѕ/СЂР°Р·РІРµСЂРЅСѓС‚Рѕ)</param>
+    /// <param name="transform">Р РµРґР°РєС‚РёСЂСѓРµРјС‹Р№ Transform</param>
+    /// <param name="rotation">Р—РЅР°С‡РµРЅРёСЏ РґР»СЏ РїРѕР»СЏ Rotation</param>
+    /// <returns>РџРµСЂРµРјРµРЅРЅР°СЏ РїСЂРёРЅРёРјР°СЋС‰Р°СЏ СЃРѕСЃС‚РѕСЏРЅРёРµ InspectorTitlebar (СЃРІРµСЂРЅСѓС‚Рѕ/СЂР°Р·РІРµСЂРЅСѓС‚Рѕ)</returns>
     public static bool TransformEditor(bool foldTitlebar, Transform transform, Vector4 rotation)
     {
         foldTitlebar = EditorGUILayout.InspectorTitlebar(foldTitlebar, transform);
@@ -184,14 +184,14 @@ public class AlternativeGUILayout
     }
 
     /// <summary>
-    /// Редактор стандартного поля Transform editor со встроенным
-    /// конвертером преобразования Vector4 в Quaternion
+    /// Р РµРґР°РєС‚РѕСЂ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕР»СЏ Transform editor СЃРѕ РІСЃС‚СЂРѕРµРЅРЅС‹Рј
+    /// РєРѕРЅРІРµСЂС‚РµСЂРѕРј РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ Vector4 РІ Quaternion
     /// </summary>
-    /// <param name="foldTitlebar">Переменная передающая состояние в InspectorTitlebar (свернуто/развернуто)</param>
-    /// <param name="transform">Редактируемый Transform</param>
-    /// <param name="rotation">Значения для поля Rotation</param>
-    /// <param name="options">Параметры GUILayout для дополнительной настройки полей</param>
-    /// <returns>Переменная принимающая состояние InspectorTitlebar (свернуто/развернуто)</returns>
+    /// <param name="foldTitlebar">РџРµСЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРґР°СЋС‰Р°СЏ СЃРѕСЃС‚РѕСЏРЅРёРµ РІ InspectorTitlebar (СЃРІРµСЂРЅСѓС‚Рѕ/СЂР°Р·РІРµСЂРЅСѓС‚Рѕ)</param>
+    /// <param name="transform">Р РµРґР°РєС‚РёСЂСѓРµРјС‹Р№ Transform</param>
+    /// <param name="rotation">Р—РЅР°С‡РµРЅРёСЏ РґР»СЏ РїРѕР»СЏ Rotation</param>
+    /// <param name="options">РџР°СЂР°РјРµС‚СЂС‹ GUILayout РґР»СЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РїРѕР»РµР№</param>
+    /// <returns>РџРµСЂРµРјРµРЅРЅР°СЏ РїСЂРёРЅРёРјР°СЋС‰Р°СЏ СЃРѕСЃС‚РѕСЏРЅРёРµ InspectorTitlebar (СЃРІРµСЂРЅСѓС‚Рѕ/СЂР°Р·РІРµСЂРЅСѓС‚Рѕ)</returns>
     public static bool TransformEditor(bool foldTitlebar, Transform transform, Vector4 rotation, GUILayoutOption options)
     {
         foldTitlebar = EditorGUILayout.InspectorTitlebar(foldTitlebar, transform);
@@ -214,8 +214,8 @@ public class AlternativeGUILayout
     #endregion
 
 
-    //Визуальный контрол InspectorTitlebar с возможностью установки собственных настроек и заданием области действия
-    //как у BeginVertical / EndVertical
+    //Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС‚СЂРѕР» InspectorTitlebar СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ СѓСЃС‚Р°РЅРѕРІРєРё СЃРѕР±СЃС‚РІРµРЅРЅС‹С… РЅР°СЃС‚СЂРѕРµРє Рё Р·Р°РґР°РЅРёРµРј РѕР±Р»Р°СЃС‚Рё РґРµР№СЃС‚РІРёСЏ
+    //РєР°Рє Сѓ BeginVertical / EndVertical
 
     public static bool CustomTitlebar(string str, bool show, Type type, Color color, GUIStyle style, GUILayoutOption options)
     {
@@ -281,18 +281,18 @@ public class AlternativeGUILayout
     
 
     /// <summary>
-    /// Контрол открытия файла
+    /// РљРѕРЅС‚СЂРѕР» РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
     /// </summary>
-    /// <param name="label">Строка описания поля</param>
-    /// <param name="buttonLabel">Строка описания кнопки</param>
-    /// <param name="labelMaxWidth">Максимальная длинна label</param>
-    /// <param name="path">Строка для открытия директории по умолчанию</param>
-    /// <param name="extension">Возврашает строку к файлу</param>
+    /// <param name="label">РЎС‚СЂРѕРєР° РѕРїРёСЃР°РЅРёСЏ РїРѕР»СЏ</param>
+    /// <param name="buttonLabel">РЎС‚СЂРѕРєР° РѕРїРёСЃР°РЅРёСЏ РєРЅРѕРїРєРё</param>
+    /// <param name="labelMaxWidth">РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅРЅР° label</param>
+    /// <param name="path">РЎС‚СЂРѕРєР° РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ РґРёСЂРµРєС‚РѕСЂРёРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</param>
+    /// <param name="extension">Р’РѕР·РІСЂР°С€Р°РµС‚ СЃС‚СЂРѕРєСѓ Рє С„Р°Р№Р»Сѓ</param>
     /// <returns></returns>
     public static string FileField(string label, string buttonLabel, float labelMaxWidth, string path, string extension)
     {
-        //Нужно было оценить как смотрятся в контроле иконки разного разрешения...
-        //для расчета длинны label = 7f
+        //РќСѓР¶РЅРѕ Р±С‹Р»Рѕ РѕС†РµРЅРёС‚СЊ РєР°Рє СЃРјРѕС‚СЂСЏС‚СЃСЏ РІ РєРѕРЅС‚СЂРѕР»Рµ РёРєРѕРЅРєРё СЂР°Р·РЅРѕРіРѕ СЂР°Р·СЂРµС€РµРЅРёСЏ...
+        //РґР»СЏ СЂР°СЃС‡РµС‚Р° РґР»РёРЅРЅС‹ label = 7f
 
         EditorGUILayout.BeginHorizontal();
 
