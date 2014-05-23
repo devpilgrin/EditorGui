@@ -1,7 +1,7 @@
 EditorGui
 =========
 
-GOEditor
+GOEditor(устарел) - [Логическое продолжение смотреть здесь](https://github.com/devpilgrin/AlterGui)
 --------
 Тестовый класс для отображения различных технологий Unity EditorGui
 
